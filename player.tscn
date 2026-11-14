@@ -11,8 +11,8 @@ radius = 5.0
 height = 12.000002
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_60f5w"]
-radius = 6.893655
-height = 36.047867
+radius = 5.996345
+height = 23.98538
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ot507"]
 radius = 3.0
@@ -64,10 +64,11 @@ color_ramp = SubResource("GradientTexture1D_onrkg")
 collision_layer = 2
 physics_material_override = SubResource("PhysicsMaterial_ot507")
 script = ExtResource("1_4flbx")
-torque = 20000.0
+torque = 40000.0
 air_torque = 20000.0
 max_angular_speed = 5.0
-spin_drag = 0.1
+spin_drag = 1.0
+bounce_spin_factor = 0.0
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="." unique_id=283282137]
 position = Vector2(-21, -15)
@@ -86,7 +87,7 @@ zoom = Vector2(3.235, 3.235)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BackSensor" unique_id=962849938]
-position = Vector2(4, 12)
+position = Vector2(-1, 13.000001)
 rotation = -1.6057029
 shape = SubResource("CapsuleShape2D_60f5w")
 
