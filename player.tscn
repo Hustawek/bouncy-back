@@ -64,17 +64,15 @@ color_ramp = SubResource("GradientTexture1D_onrkg")
 collision_layer = 2
 physics_material_override = SubResource("PhysicsMaterial_ot507")
 script = ExtResource("1_4flbx")
-torque = 40000.0
-air_torque = 40000.0
-max_angular_speed = 5.0
-spin_drag = 0.1
+torque = 50000.0
+air_torque = 20000.0
+max_angular_speed = 2.0
+spin_drag = 1.0
+player_weight = 0.8
+bounce_base = 300.0
+bounce_speed_factor = 0.2
 bounce_spin_factor = 0.0
-
-[node name="CollisionShape2D7" type="CollisionShape2D" parent="." unique_id=283282137]
-position = Vector2(-21, -15)
-rotation = 3.1415925
-scale = Vector2(0.99999994, 0.99999994)
-shape = SubResource("CapsuleShape2D_r6cd3")
+bounce_carry = 0.3
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1734874628]
 rotation = -1.5707964
@@ -82,6 +80,7 @@ texture = ExtResource("2_onrkg")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1111577256]
 zoom = Vector2(2.025, 2.025)
+position_smoothing_enabled = true
 
 [node name="BackSensor" type="Area2D" parent="." unique_id=1632017168]
 collision_layer = 0

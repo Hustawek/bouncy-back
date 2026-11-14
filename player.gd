@@ -16,6 +16,7 @@ extends RigidBody2D
 @export var bounce_max := 700.0           # cap on the total impulse
 @export var bounce_cooldown := 0.15       # seconds before another bounce can fire
 @export var bounce_spin_factor := 1.0     # spin from an off-center bounce: 0 = none, 1 = realistic
+@export_range(0.0, 1.0) var bounce_carry := 0.8   # share of incoming speed along the surface kept: 0 = none, 1 = all
 
 @onready var _back_sensor: Area2D = $BackSensor
 @onready var _back_shape: CollisionShape2D = $BackSensor/CollisionShape2D
@@ -62,6 +63,7 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 func _try_bounce(state: PhysicsDirectBodyState2D) -> void:
 	# Where and at what angle the BackSensor touches a surface, taken from the
 	# sensor's own shape (the body's contacts don't matter).
+
 	var hit := _back_sensor_hit(state)
 	if hit.is_empty():
 		return  # sensor overlap is a step stale; nothing under it this step
@@ -73,35 +75,22 @@ func _try_bounce(state: PhysicsDirectBodyState2D) -> void:
 	# How fast we were moving into the surface just before touching it.
 	var impact_speed := maxf(-_prev_velocity.dot(normal), 0.0)
 	var strength := minf(bounce_base + bounce_speed_factor * impact_speed, bounce_max)
-	if Input.is_key_pressed(KEY_SHIFT):
-		strength /= 2
-	var impact_velocity := state.linear_velocity
+	var impulse := dir * strength
 
-	# Normal bounce direction
-	var bounce_dir := (
-		player_up * player_weight +
-		normal * (1.0 - player_weight)
-	).normalized()
+	# Launch velocity plus part of the incoming speed along the surface, so
+	# sliding/flying sideways into a bounce keeps some of that momentum.
+	# Uses the previous step's velocity: on this step the collision has
+	# already eaten into it.
+	var along_surface := _prev_velocity - _prev_velocity.dot(normal) * normal
+	state.linear_velocity = impulse / mass + along_surface * bounce_carry
 
-	# How much of the existing velocity we preserve.
-	# F = 0 -> pure bounce
-	# F = 1 -> heavily preserve existing momentum
-	var retained := impact_velocity * F
+	# The push comes from where the back touches, not from the center, so an
+	# off-center touch spins the player (same formula Godot uses for impulses).
+	var lever: Vector2 = hit["point"] - (state.transform.origin + state.center_of_mass)
+	state.angular_velocity += lever.cross(impulse) * state.inverse_inertia * bounce_spin_factor
 
-	# Bounce impulse.
-	var bounce_velocity := bounce_dir * (strength / mass)
-
-	# Combine them.
-	var new_velocity := bounce_velocity + retained
-
-	# Prevent the retained velocity from fighting the surface too much.
-	# Remove velocity that is directed INTO the wall.
-	var into_surface := new_velocity.dot(normal)
-	if into_surface < 0.0:
-		new_velocity -= normal * into_surface
-
-	state.linear_velocity = new_velocity
 	_cooldown_left = bounce_cooldown
+	$JumpSound.play()
 
 
 # Asks the physics engine where the BackSensor's shape touches something.

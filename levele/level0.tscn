@@ -152,10 +152,11 @@ label_settings = SubResource("LabelSettings_04g2k")
 position = Vector2(1075, 57)
 
 [node name="Label" type="Label" parent="." unique_id=173283862]
-offset_left = -122.0
-offset_top = 38.0
-offset_right = 168.0
-offset_bottom = 61.0
+z_index = 2
+offset_left = -49.0
+offset_top = 17.0
+offset_right = 241.0
+offset_bottom = 40.0
 text = "Use A and D to rotate"
 label_settings = SubResource("LabelSettings_04g2k")
 
