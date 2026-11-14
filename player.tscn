@@ -3,12 +3,13 @@
 [ext_resource type="Script" uid="uid://cimicfi5jbwo1" path="res://player.gd" id="1_4flbx"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ot507"]
-friction = 0.2
+friction = 0.5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ot507"]
 size = Vector2(46, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_73sme"]
+size = Vector2(10.434782, 50)
 
 [node name="Player" type="RigidBody2D" unique_id=928365524]
 collision_layer = 2
@@ -30,7 +31,6 @@ zoom = Vector2(5, 5)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BackSensor" unique_id=508661617]
-position = Vector2(0, 10)
+position = Vector2(-8.999999, 14)
 scale = Vector2(2.3, 0.2)
 shape = SubResource("RectangleShape2D_73sme")
-

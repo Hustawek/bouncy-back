@@ -71,7 +71,9 @@ sources/0 = SubResource("TileSetAtlasSource_h2yge")
 
 [node name="Player" parent="." unique_id=808825848 instance=ExtResource("1_ig7tw")]
 position = Vector2(-7, -19)
+collision_layer = 1
 torque = 50000.0
+bounce_speed_factor = 0.2
 
 [node name="Tile Map" type="Node2D" parent="." unique_id=883928445]
 
