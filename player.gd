@@ -15,7 +15,6 @@ extends RigidBody2D
 @export var bounce_cooldown := 0.15       # seconds before another bounce can fire
 @export var bounce_spin_factor := 1.0     # spin from an off-center bounce: 0 = none, 1 = realistic
 
-@onready var particles = $GPUParticles2D
 @onready var _back_sensor: Area2D = $BackSensor
 @onready var _back_shape: CollisionShape2D = $BackSensor/CollisionShape2D
 var _cooldown_left := 0.0
