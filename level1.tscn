@@ -1,71 +1,11 @@
-[gd_scene format=4 uid="uid://dympyj4xacfwj"]
+[gd_scene format=3 uid="uid://dympyj4xacfwj"]
 
 [ext_resource type="PackedScene" uid="uid://b0geaeq6x5lau" path="res://player.tscn" id="1_ootpb"]
-[ext_resource type="Texture2D" uid="uid://cae8psg6fvxr5" path="res://brackeys_platformer_assets/sprites/world_tileset.png" id="2_v38iq"]
 [ext_resource type="FontFile" uid="uid://duig7wikd3vqf" path="res://brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="3_v8kj3"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_crycw"]
-texture = ExtResource("2_v38iq")
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-1:0/0 = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-2:0/0 = 0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-3:0/0 = 0
-3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-4:0/0 = 0
-4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-5:0/0 = 0
-5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-6:0/0 = 0
-6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-7:0/0 = 0
-7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-8:0/0 = 0
-8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-0:1/0 = 0
-0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
-1:1/0 = 0
-1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
-2:1/0 = 0
-2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
-3:1/0 = 0
-3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
-4:1/0 = 0
-4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
-5:1/0 = 0
-5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
-6:1/0 = 0
-6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
-7:1/0 = 0
-7:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
-8:1/0 = 0
-8:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
-0:2/0 = 0
-0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
-1:2/0 = 0
-1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
-2:2/0 = 0
-2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
-3:2/0 = 0
-3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
-4:2/0 = 0
-4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
-5:2/0 = 0
-5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
-6:2/0 = 0
-6:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
-7:2/0 = 0
-7:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
-8:2/0 = 0
-8:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
-2:3/0 = 0
-2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
-
-[sub_resource type="TileSet" id="TileSet_i2041"]
-physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_crycw")
+[ext_resource type="PackedScene" uid="uid://c07g2aafd418g" path="res://patyk.tscn" id="4_v38iq"]
+[ext_resource type="PackedScene" uid="uid://coqar0wypgnsr" path="res://spike.tscn" id="5_crycw"]
+[ext_resource type="PackedScene" uid="uid://mqhlmk4l8hef" path="res://drzewo1.tscn" id="5_v8kj3"]
+[ext_resource type="PackedScene" uid="uid://blvvisru6lc5y" path="res://wieza.tscn" id="6_i2041"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xy4tn"]
 font = ExtResource("3_v8kj3")
@@ -76,17 +16,11 @@ font_size = 101
 [node name="Common" type="Node2D" parent="." unique_id=1583657973]
 
 [node name="Player" parent="Common" unique_id=928365524 instance=ExtResource("1_ootpb")]
-position = Vector2(-9, -37)
+position = Vector2(-19, -76)
 rotation = 1.5707964
 collision_layer = 1
 torque = 50000.0
 bounce_speed_factor = 0.2
-
-[node name="Tile Map" type="Node2D" parent="Common" unique_id=974197226]
-
-[node name="Ground" type="TileMapLayer" parent="Common/Tile Map" unique_id=633764596]
-tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAD//wAAAAAAAAAAAAABAAAAAAAAAAAAAAD+/wAAAAAAAAAAAAD9/wAAAAAAAAAAAAD8/wAAAAAAAAAAAAD7/wAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAGAP//AAAAAAAAAAAGAP7/AAAAAAAAAAAGAP3/AAAAAAAAAAAGAPz/AAAAAAAAAAAGAPv/AAAAAAAAAAAGAPr/AAAAAAAAAAAGAPn/AAAAAAAAAAAGAPj/AAAAAAAAAAAFAPj/AAAAAAAAAAAEAPj/AAAAAAAAAAADAPj/AAAAAAAAAAACAPj/AAAAAAAAAAABAPj/AAAAAAAAAAAAAPj/AAAAAAAAAAD///j/AAAAAAAAAAD+//j/AAAAAAAAAAD9//j/AAAAAAAAAAD8//j/AAAAAAAAAAD7//j/AAAAAAAAAAD6//j/AAAAAAAAAAD5//j/AAAAAAAAAAD4//j/AAAAAAAAAAD4//n/AAAAAAAAAAD4//r/AAAAAAAAAAD4//v/AAAAAAAAAAD4//z/AAAAAAAAAAD4//3/AAAAAAAAAAD4//7/AAAAAAAAAAD4////AAAAAAAAAAD4/wAAAAAAAAAAAAD5/wAAAAAAAAAAAAD6/wAAAAAAAAAAAAA=")
-tile_set = SubResource("TileSet_i2041")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Common" unique_id=991503060]
 
@@ -104,3 +38,26 @@ visible = false
 layout_mode = 2
 text = "skill issue"
 label_settings = SubResource("LabelSettings_xy4tn")
+
+[node name="Patyk" parent="." unique_id=2085923321 instance=ExtResource("4_v38iq")]
+position = Vector2(2, -44)
+rotation = 1.100543
+
+[node name="Patyk2" parent="." unique_id=993170324 instance=ExtResource("4_v38iq")]
+position = Vector2(16.000004, -55)
+rotation = 1.5312852
+
+[node name="Spike" parent="." unique_id=1939790566 instance=ExtResource("5_crycw")]
+position = Vector2(88, -87)
+rotation = -0.52884567
+
+[node name="Wieza" parent="." unique_id=1380887936 instance=ExtResource("6_i2041")]
+position = Vector2(46, -67)
+rotation = 3.2340918
+
+[node name="Patyk3" parent="." unique_id=989393213 instance=ExtResource("4_v38iq")]
+position = Vector2(-198, 17)
+rotation = 1.6522143
+
+[node name="Drzewo" parent="." unique_id=526342370 instance=ExtResource("5_v8kj3")]
+position = Vector2(164, 88)

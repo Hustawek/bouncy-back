@@ -2,8 +2,8 @@ extends RigidBody2D
 
 
 
-@export var torque := 100000.0           # how hard it spins up while touching something
-@export var air_torque := 100000.0       # how hard it spins up while in the air
+@export var torque := 200000.0           # how hard it spins up while touching something
+@export var air_torque := 200000.0       # how hard it spins up while in the air
 @export var max_angular_speed := 40.0   # radians per second
 
 @export_group("Bounce")
