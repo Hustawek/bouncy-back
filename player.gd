@@ -71,6 +71,7 @@ func _try_bounce(state: PhysicsDirectBodyState2D) -> void:
 	var normal: Vector2 = hit["normal"]
 
 	var player_up := -state.transform.y.normalized()
+	var dir := (player_up * player_weight + normal * (1.0 - player_weight)).normalized()
 
 	# How fast we were moving into the surface just before touching it.
 	var impact_speed := maxf(-_prev_velocity.dot(normal), 0.0)
@@ -90,7 +91,7 @@ func _try_bounce(state: PhysicsDirectBodyState2D) -> void:
 	state.angular_velocity += lever.cross(impulse) * state.inverse_inertia * bounce_spin_factor
 
 	_cooldown_left = bounce_cooldown
-	$JumpSound.play()
+	#$JumpSound.play()
 
 
 # Asks the physics engine where the BackSensor's shape touches something.
