@@ -7,6 +7,7 @@ const POINT_SPACING_SCREEN := 3.0   # px on screen between recorded stroke point
 const SIMPLIFY_SCREEN := 1.5        # px on screen a simplified outline may deviate
 const MIN_AREA := 16.0              # px², smaller strokes are ignored
 const STROKE_COLOR := Color(1.0, 0.75, 0.2)
+const RANDOM_LABEL := "Random"
 
 var _toolbar: HBoxContainer
 var _draw_button: Button
@@ -235,9 +236,10 @@ func _selected_rocks() -> Array[Node]:
 
 
 func _scan_types() -> void:
-	var previous := _type_picker.get_item_text(_type_picker.selected) if _type_picker.item_count else "Stone"
+	var previous := _type_picker.get_item_text(_type_picker.selected) if _type_picker.item_count else RANDOM_LABEL
 	_types.clear()
 	_type_picker.clear()
+	_type_picker.add_item(RANDOM_LABEL)  # index 0; real types start at 1
 	for f in DirAccess.get_files_at(TYPES_DIR):
 		if f.ends_with(".tres"):
 			var t := load(TYPES_DIR + f) as RockType
@@ -253,7 +255,9 @@ func _scan_types() -> void:
 func _current_type() -> RockType:
 	if _types.is_empty():
 		return null
-	return _types[clampi(_type_picker.selected, 0, _types.size() - 1)]
+	if _type_picker.selected <= 0:
+		return _types.pick_random()
+	return _types[clampi(_type_picker.selected - 1, 0, _types.size() - 1)]
 
 
 func _canvas_xform() -> Transform2D:
