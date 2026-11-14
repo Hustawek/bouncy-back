@@ -10,23 +10,6 @@
 [ext_resource type="Resource" path="res://addons/rock_painter/types/sandstone.tres" id="8_efxa6"]
 [ext_resource type="Resource" path="res://addons/rock_painter/types/diorite.tres" id="9_ycdy4"]
 
-[sub_resource type="Curve" id="Curve_ycdy4"]
-_limits = [0.0, 100.0, 0.0, 100.0]
-_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(0.25132275, 0.8859649), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="Curve" id="Curve_w48qg"]
-_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Curve" id="Curve_efxa6"]
-_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Curve" id="Curve_dg77c"]
-_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
 [sub_resource type="LabelSettings" id="LabelSettings_1bvp3"]
 font = ExtResource("5_lquwl")
 font_size = 101
@@ -39,10 +22,9 @@ font_size = 101
 position = Vector2(-9, -37)
 rotation = 1.5707964
 collision_layer = 1
-spin_curve = SubResource("Curve_ycdy4")
-stop_curve = SubResource("Curve_w48qg")
-air_spin_curve = SubResource("Curve_efxa6")
-air_stop_curve = SubResource("Curve_dg77c")
+torque = 100000.0
+air_torque = 100000.0
+spin_drag = 1.0
 bounce_speed_factor = 0.2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Common" unique_id=526972211]
