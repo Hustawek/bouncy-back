@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://c344oprnxsrr5" path="res://sounds/spike.ogg" id="3_i3pqv"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ot507"]
-friction = 0.5
+friction = 0.7
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_60f5w"]
 radius = 5.996345
