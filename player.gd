@@ -14,6 +14,7 @@ extends RigidBody2D
 @export var bounce_cooldown := 0.15       # seconds before another bounce can fire
 @export var bounce_spin_factor := 1.0     # spin from an off-center bounce: 0 = none, 1 = realistic
 
+@onready var particles = $GPUParticles2D
 @onready var _back_sensor: Area2D = $BackSensor
 @onready var _back_shape: CollisionShape2D = $BackSensor/CollisionShape2D
 var _cooldown_left := 0.0
@@ -24,6 +25,7 @@ func _ready() -> void:
 	contact_monitor = true
 	max_contacts_reported = 4
 	body_entered.connect(_on_body_entered)
+	_back_sensor.body_entered.connect(_on_back_sensor_body_entered)
 
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
@@ -87,4 +89,17 @@ func _back_sensor_hit(state: PhysicsDirectBodyState2D) -> Dictionary:
 
 
 func _on_body_entered(body: Node) -> void:
-	print("Nastąpiło zderzenie z" + body.name)
+	print(body.name)
+	if str(body.name).begins_with("Wieza"):
+		particles.restart()
+		particles.emitting = true
+	if str(body.name).begins_with("AE"):
+		particles.restart()
+		particles.emitting = true
+func _on_back_sensor_body_entered(body: Node) -> void:
+	print(body.name)
+	if str(body.name).begins_with("Wieza"):
+		body.queue_free()
+	if str(body.name).begins_with("AE"):
+		particles.restart()
+		particles.emitting = true
