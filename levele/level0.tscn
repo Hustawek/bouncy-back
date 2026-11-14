@@ -38,6 +38,7 @@ air_torque = 5000.0
 spin_drag = 0.2
 F = 0.4
 bounce_base = 0.0
+bounce_speed_factor = 0.2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Common" unique_id=1010713381]
 
