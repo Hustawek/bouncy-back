@@ -68,6 +68,7 @@ torque = 20000.0
 air_torque = 20000.0
 max_angular_speed = 5.0
 spin_drag = 0.1
+bounce_spin_factor = 0.0
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="." unique_id=283282137]
 position = Vector2(-21, -15)
@@ -80,7 +81,7 @@ rotation = -1.5707964
 texture = ExtResource("2_onrkg")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1111577256]
-zoom = Vector2(3.235, 3.235)
+zoom = Vector2(2.025, 2.025)
 
 [node name="BackSensor" type="Area2D" parent="." unique_id=1632017168]
 collision_layer = 0
