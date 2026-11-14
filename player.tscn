@@ -8,7 +8,10 @@ friction = 0.2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ot507"]
 size = Vector2(46, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_73sme"]
+
 [node name="Player" type="RigidBody2D" unique_id=928365524]
+collision_layer = 2
 physics_material_override = SubResource("PhysicsMaterial_ot507")
 script = ExtResource("1_4flbx")
 torque = 60000.0
@@ -16,9 +19,19 @@ max_angular_speed = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1734874628]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=65053249]
+[node name="Body" type="CollisionShape2D" parent="." unique_id=65053249]
 shape = SubResource("RectangleShape2D_ot507")
 debug_color = Color(3.657937e-06, 0.5796262, 0.80605257, 0.41960785)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1111577256]
 zoom = Vector2(5, 5)
+
+[node name="BackSensor" type="Area2D" parent="." unique_id=1632017168]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BackSensor" unique_id=508661617]
+position = Vector2(0, 10)
+scale = Vector2(2.3, 0.2)
+shape = SubResource("RectangleShape2D_73sme")
+
+[connection signal="body_entered" from="BackSensor" to="." method="_on_back_sensor_body_entered"]

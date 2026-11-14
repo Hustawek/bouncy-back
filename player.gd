@@ -8,10 +8,17 @@ func _ready() -> void:
 	contact_monitor = true
 	max_contacts_reported = 4
 	body_entered.connect(_on_body_entered)
-func _on_body_entered(body: Node) -> void:
-	print("Nastąpiło zderzenie z" + body.name)
+
 
 func _physics_process(_delta: float) -> void:
 	var direction := Input.get_axis("rotate_left", "rotate_right")
 	apply_torque(direction * torque)
 	angular_velocity = clamp(angular_velocity, -max_angular_speed, max_angular_speed)
+
+
+func _on_back_sensor_body_entered(body: Node2D) -> void:
+	apply_central_impulse(Vector2(0, -400))
+	
+	
+func _on_body_entered(body: Node) -> void:
+	print("Nastąpiło zderzenie z" + body.name)
