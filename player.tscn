@@ -34,4 +34,3 @@ position = Vector2(0, 10)
 scale = Vector2(2.3, 0.2)
 shape = SubResource("RectangleShape2D_73sme")
 
-[connection signal="body_entered" from="BackSensor" to="." method="_on_back_sensor_body_entered"]
