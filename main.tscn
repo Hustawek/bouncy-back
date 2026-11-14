@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b0geaeq6x5lau" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://cae8psg6fvxr5" path="res://brackeys_platformer_assets/sprites/world_tileset.png" id="2_0xm2m"]
+[ext_resource type="Shape2D" uid="uid://d2e3c2a0f8hoj" path="res://new_capsule_shape_2d.tres" id="3_h2yge"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h2yge"]
 texture = ExtResource("2_0xm2m")
@@ -77,3 +78,12 @@ torque = 50000.0
 [node name="Ground" type="TileMapLayer" parent="Tile Map" unique_id=470465558]
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAD//wAAAAAAAAAAAAD+/wAAAAAAAAAAAAD0/wAAAAAAAAAAAAD1/wAAAAAAAAAAAAD2/wAAAAAAAAAAAAD3/wAAAAAAAAAAAAD4/wAAAAAAAAAAAAD5/wAAAAAAAAAAAAD6/wAAAAAAAAAAAAD7/wAAAAAAAAAAAAD8/wAAAAAAAAAAAAD9/wAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAALAAAAAAAAAAAAAAAMAAEAAAAAAAAAAAANAAEAAAAAAAAAAAAOAAEAAAAAAAAAAAAPAAEAAAAAAAAAAAAQAAEAAAAAAAAAAAAFAP3/AAAAAAAAAAAGAP3/AAAAAAAAAAAHAP3/AAAAAAAAAAAIAP3/AAAAAAAAAAAJAP3/AAAAAAAAAAAKAP3/AAAAAAAAAAALAP3/AAAAAAAAAAAMAP3/AAAAAAAAAAANAP3/AAAAAAAAAAAOAP3/AAAAAAAAAAAPAP3/AAAAAAAAAAAQAP3/AAAAAAAAAAA=")
 tile_set = SubResource("TileSet_ot507")
+
+[node name="Wieza" type="RigidBody2D" parent="." unique_id=109122832]
+position = Vector2(-107, -57)
+mass = 100.0
+gravity_scale = 0.0
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wieza" unique_id=1276448067]
+shape = ExtResource("3_h2yge")
