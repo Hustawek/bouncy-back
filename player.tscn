@@ -42,6 +42,24 @@ height = 24.04163
 radius = 7.0000005
 height = 32.0
 
+[sub_resource type="Gradient" id="Gradient_onrkg"]
+colors = PackedColorArray(0.23753911, 0.23753914, 0.23753911, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_onrkg"]
+gradient = SubResource("Gradient_onrkg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_onrkg"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+spread = 180.0
+initial_velocity_max = 16.13
+gravity = Vector3(0, 98, 0)
+scale_min = 0.0
+scale_max = 6.3799996
+color = Color(0.42745098, 0.9764706, 0.16078432, 1)
+color_ramp = SubResource("GradientTexture1D_onrkg")
+
 [node name="Player" type="RigidBody2D" unique_id=928365524]
 collision_layer = 2
 physics_material_override = SubResource("PhysicsMaterial_ot507")
@@ -103,3 +121,7 @@ position = Vector2(-16, 0.99999994)
 rotation = 1.5707964
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("CapsuleShape2D_idk1l")
+
+[node name="Uranium" type="GPUParticles2D" parent="." unique_id=1969688368]
+visible = false
+process_material = SubResource("ParticleProcessMaterial_onrkg")
