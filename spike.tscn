@@ -5,9 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_60f5w"]
 size = Vector2(4, 7.5)
 
-[node name="Spike" type="RigidBody2D" unique_id=1939790566]
-mass = 1000.0
-gravity_scale = 0.0
+[node name="Spike" type="Node2D" unique_id=521800832]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1970597090]
 texture = ExtResource("1_8ryga")

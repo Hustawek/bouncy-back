@@ -5,6 +5,7 @@ extends RigidBody2D
 @export var torque := 100000.0           # how hard it spins up while touching something
 @export var air_torque := 100000.0       # how hard it spins up while in the air
 @export var max_angular_speed := 40.0   # radians per second
+@export var spin_drag := 1.0            # how fast spin fades with no key held (1.0 = halves in ~0.7 s, 0 = never)
 
 @export_group("Bounce")
 @export_range(0.0, 1.0) var player_weight := 0.5   # 0 = straight out of the surface, 1 = player's up
@@ -41,6 +42,9 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	var in_air := state.get_contact_count() == 0
 	var direction := Input.get_axis("rotate_left", "rotate_right")
 	state.apply_torque(direction * (air_torque if in_air else torque))
+	# With no key held, the spin fades out gradually instead of stopping.
+	if direction == 0.0:
+		state.angular_velocity *= exp(-spin_drag * state.step)
 
 	_cooldown_left = maxf(_cooldown_left - state.step, 0.0)
 	# Checked every step (not only when the sensor first touches), so the
