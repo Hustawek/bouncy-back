@@ -6,25 +6,41 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ot507"]
 friction = 0.5
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r6cd3"]
+radius = 5.0
+height = 12.000002
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_60f5w"]
 radius = 6.893655
 height = 36.047867
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_60f5w"]
-radius = 5.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jnwut"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ot507"]
 radius = 3.0
 height = 12.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_khxyh"]
-radius = 3.0980763
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_73sme"]
+radius = 3.0
+height = 16.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ukicf"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q4aq0"]
+radius = 3.0
+height = 16.0
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_onrkg"]
-particle_flag_disable_z = true
-gravity = Vector3(0, 98, 0)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mwgn4"]
+radius = 6.0
+height = 24.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_53ur1"]
+radius = 2.1213202
+height = 12.727921
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k6fxa"]
+radius = 3.5355341
+height = 24.04163
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_idk1l"]
+radius = 7.0000005
+height = 32.0
 
 [node name="Player" type="RigidBody2D" unique_id=928365524]
 collision_layer = 2
@@ -32,6 +48,12 @@ physics_material_override = SubResource("PhysicsMaterial_ot507")
 script = ExtResource("1_4flbx")
 torque = 60000.0
 max_angular_speed = 1.0
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="." unique_id=283282137]
+position = Vector2(-21, -15)
+rotation = 3.1415925
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("CapsuleShape2D_r6cd3")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1734874628]
 rotation = -1.5707964
@@ -48,29 +70,36 @@ position = Vector2(4, 12)
 rotation = -1.6057029
 shape = SubResource("CapsuleShape2D_60f5w")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=673610688]
-position = Vector2(-21, -15)
-shape = SubResource("CircleShape2D_60f5w")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=982634764]
+position = Vector2(30, -11)
+shape = SubResource("CapsuleShape2D_ot507")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=887741737]
-position = Vector2(29, -11)
-shape = SubResource("CapsuleShape2D_jnwut")
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1248290707]
+position = Vector2(21, -9)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_73sme")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=502419247]
-position = Vector2(19.000002, -6.000001)
-rotation = 1.0471976
-shape = SubResource("CapsuleShape2D_khxyh")
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=1301994159]
+position = Vector2(14, -1)
+shape = SubResource("CapsuleShape2D_q4aq0")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="." unique_id=833169106]
-position = Vector2(-8, -7.000001)
-rotation = 2.420773
-shape = SubResource("CapsuleShape2D_khxyh")
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="." unique_id=1285563638]
+position = Vector2(5, 1)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_mwgn4")
 
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="." unique_id=1533394505]
-position = Vector2(-18, 0)
-rotation = 1.5246028
-shape = SubResource("CapsuleShape2D_ukicf")
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="." unique_id=199175130]
+position = Vector2(18, -6.0000005)
+rotation = 1.2217305
+shape = SubResource("CapsuleShape2D_53ur1")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1857915243]
-position = Vector2(11, -4)
-process_material = SubResource("ParticleProcessMaterial_onrkg")
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="." unique_id=1822826580]
+position = Vector2(-9, -9)
+rotation = 2.3561945
+shape = SubResource("CapsuleShape2D_k6fxa")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="." unique_id=366242435]
+position = Vector2(-16, 0.99999994)
+rotation = 1.5707964
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("CapsuleShape2D_idk1l")
