@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dympyj4xacfwj"]
 
+[ext_resource type="Texture2D" uid="uid://chb1xyg4athfs" path="res://sprites/sunshineAndRainbows.png" id="1_i2041"]
 [ext_resource type="PackedScene" uid="uid://b0geaeq6x5lau" path="res://player.tscn" id="1_ootpb"]
 [ext_resource type="FontFile" uid="uid://duig7wikd3vqf" path="res://brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="3_v8kj3"]
 [ext_resource type="PackedScene" uid="uid://c07g2aafd418g" path="res://patyk.tscn" id="4_v38iq"]
@@ -12,6 +13,10 @@ font = ExtResource("3_v8kj3")
 font_size = 101
 
 [node name="Node2D" type="Node2D" unique_id=1263837793]
+
+[node name="SunshineAndRainbows" type="Sprite2D" parent="." unique_id=184752726]
+position = Vector2(-76, 9)
+texture = ExtResource("1_i2041")
 
 [node name="Common" type="Node2D" parent="." unique_id=1583657973]
 
@@ -52,7 +57,7 @@ position = Vector2(88, -87)
 rotation = -0.52884567
 
 [node name="Wieza" parent="." unique_id=1380887936 instance=ExtResource("6_i2041")]
-position = Vector2(46, -67)
+position = Vector2(46.999996, -60.000008)
 rotation = 3.2340918
 
 [node name="Patyk3" parent="." unique_id=989393213 instance=ExtResource("4_v38iq")]
