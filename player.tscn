@@ -64,10 +64,10 @@ color_ramp = SubResource("GradientTexture1D_onrkg")
 collision_layer = 2
 physics_material_override = SubResource("PhysicsMaterial_ot507")
 script = ExtResource("1_4flbx")
-torque = 1000.0
-air_torque = 5000.0
-max_angular_speed = 2.0
-spin_drag = 1000000.0
+torque = 20000.0
+air_torque = 20000.0
+max_angular_speed = 5.0
+spin_drag = 0.1
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="." unique_id=283282137]
 position = Vector2(-21, -15)
