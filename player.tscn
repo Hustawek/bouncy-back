@@ -2,9 +2,17 @@
 
 [ext_resource type="Script" uid="uid://cimicfi5jbwo1" path="res://player.gd" id="1_4flbx"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ot507"]
+size = Vector2(46, 20)
+
 [node name="Player" type="CharacterBody2D" unique_id=808825848]
 script = ExtResource("1_4flbx")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1734874628]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1106374593]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=65053249]
+shape = SubResource("RectangleShape2D_ot507")
+debug_color = Color(3.657937e-06, 0.5796262, 0.80605257, 0.41960785)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1111577256]
+zoom = Vector2(5, 5)
