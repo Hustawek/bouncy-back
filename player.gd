@@ -2,14 +2,14 @@ extends RigidBody2D
 
 
 
-@export var torque := 40000.0           # how hard it spins up while touching something
-@export var air_torque := 40000.0       # how hard it spins up while in the air
+@export var torque := 100000.0           # how hard it spins up while touching something
+@export var air_torque := 100000.0       # how hard it spins up while in the air
 @export var max_angular_speed := 40.0   # radians per second
 
 @export_group("Bounce")
 @export_range(0.0, 1.0) var player_weight := 0.5   # 0 = straight out of the surface, 1 = player's up
-@export var bounce_base := 400.0          # impulse even on a soft landing
-@export var bounce_speed_factor := 0.5    # extra impulse per px/s of impact speed
+@export var bounce_base := 400.0                   # impulse even on a soft landing
+@export var bounce_speed_factor := 0.5             # extra impulse per px/s of impact speed
 @export var bounce_max := 700.0           # cap on the total impulse
 @export var bounce_cooldown := 0.15       # seconds before another bounce can fire
 @export var bounce_spin_factor := 1.0     # spin from an off-center bounce: 0 = none, 1 = realistic
@@ -127,10 +127,10 @@ func die() -> void:
 func _on_body_entered(body: Node) -> void:
 	if str(body.name).begins_with("Wieza"):
 		die()
-	if str(body.name).begins_with("AE"):
+	if str(body.name).begins_with("Spike"):
 		die()
 func _on_back_sensor_body_entered(body: Node) -> void:
-	if str(body.name).begins_with("AE"):
+	if str(body.name).begins_with("Spike"):
 		die()
 	if str(body.name).begins_with("Wieza"):
 		body.queue_free()
