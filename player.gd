@@ -1,15 +1,17 @@
+class_name Player
 extends RigidBody2D
 
 
 
-@export var torque := 100000.0           # how hard it spins up while touching something
+@export var torque := 1000000000.0           # how hard it spins up while touching something
 @export var air_torque := 100000.0       # how hard it spins up while in the air
 @export var max_angular_speed := 40.0   # radians per second
 @export var spin_drag := 0.0           # how fast spin fades with no key held (1.0 = halves in ~0.7 s, 0 = never)
-
+@export var F := 0.2
 @export_group("Bounce")
 @export_range(0.0, 1.0) var player_weight := 0.5   # 0 = straight out of the surface, 1 = player's up
 @export var bounce_base := 400.0                   # impulse even on a soft landing
+@export var bouncy_shift := 200.0                   # impulse even on a soft landing
 @export var bounce_speed_factor := 0.5             # extra impulse per px/s of impact speed
 @export var bounce_max := 700.0           # cap on the total impulse
 @export var bounce_cooldown := 0.15       # seconds before another bounce can fire
@@ -40,7 +42,7 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	# Player spin input: a different torque in the air than on the ground.
 	var in_air := state.get_contact_count() == 0
 	var direction := Input.get_axis("rotate_left", "rotate_right")
-	state.apply_torque(direction * (air_torque if in_air else torque))
+	state.apply_torque(direction * (air_torque if in_air else torque) * (0.5 if Input.is_key_pressed(KEY_SHIFT) else 1))
 	# With no key held, the spin fades out gradually instead of stopping.
 	if direction == 0.0:
 		state.angular_velocity *= exp(-spin_drag * state.step)
@@ -63,25 +65,42 @@ func _try_bounce(state: PhysicsDirectBodyState2D) -> void:
 	var hit := _back_sensor_hit(state)
 	if hit.is_empty():
 		return  # sensor overlap is a step stale; nothing under it this step
+		
 	var normal: Vector2 = hit["normal"]
 
 	var player_up := -state.transform.y.normalized()
-	var dir := (player_up * player_weight + normal * (1.0 - player_weight)).normalized()
 
 	# How fast we were moving into the surface just before touching it.
 	var impact_speed := maxf(-_prev_velocity.dot(normal), 0.0)
 	var strength := minf(bounce_base + bounce_speed_factor * impact_speed, bounce_max)
-	var impulse := dir * strength
+	if Input.is_key_pressed(KEY_SHIFT):
+		strength /= 2
+	var impact_velocity := state.linear_velocity
 
-	# Replace (not add to) the current velocity, so leftover sliding from
-	# the landing doesn't bend the launch away from `dir`.
-	state.linear_velocity = impulse / mass
+	# Normal bounce direction
+	var bounce_dir := (
+		player_up * player_weight +
+		normal * (1.0 - player_weight)
+	).normalized()
 
-	# The push comes from where the back touches, not from the center, so an
-	# off-center touch spins the player (same formula Godot uses for impulses).
-	var lever: Vector2 = hit["point"] - (state.transform.origin + state.center_of_mass)
-	state.angular_velocity += lever.cross(impulse) * state.inverse_inertia * bounce_spin_factor
+	# How much of the existing velocity we preserve.
+	# F = 0 -> pure bounce
+	# F = 1 -> heavily preserve existing momentum
+	var retained := impact_velocity * F
 
+	# Bounce impulse.
+	var bounce_velocity := bounce_dir * (strength / mass)
+
+	# Combine them.
+	var new_velocity := bounce_velocity + retained
+
+	# Prevent the retained velocity from fighting the surface too much.
+	# Remove velocity that is directed INTO the wall.
+	var into_surface := new_velocity.dot(normal)
+	if into_surface < 0.0:
+		new_velocity -= normal * into_surface
+
+	state.linear_velocity = new_velocity
 	_cooldown_left = bounce_cooldown
 
 
