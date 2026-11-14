@@ -3,13 +3,25 @@
 [ext_resource type="Shape2D" uid="uid://d2e3c2a0f8hoj" path="res://new_capsule_shape_2d.tres" id="1_wjoio"]
 [ext_resource type="Texture2D" uid="uid://byk61wqed2ia4" path="res://sprites/wierza5G.png" id="2_o5qkg"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_60f5w"]
+radius = 16.492422
+
 [node name="Wieza" type="RigidBody2D" unique_id=1380887936]
 mass = 100.0
 gravity_scale = 0.0
 freeze = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2087214745]
+position = Vector2(0, 7)
 shape = ExtResource("1_wjoio")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2141945056]
 texture = ExtResource("2_o5qkg")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=2082185809]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_60f5w")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=689144862]
+position = Vector2(0, -51)
+shape = SubResource("CircleShape2D_60f5w")

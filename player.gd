@@ -20,6 +20,8 @@ extends RigidBody2D
 var _cooldown_left := 0.0
 var _prev_velocity := Vector2.ZERO
 
+var is_dead := false
+
 
 func _ready() -> void:
 	contact_monitor = true
@@ -31,8 +33,10 @@ func _ready() -> void:
 var last_collision_point := Vector2.ZERO
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	if is_dead:
+		return
 	if state.get_contact_count() > 0:
-		last_collision_point = state.transform * state.get_contact_local_position(0)
+		last_collision_point = state.get_contact_local_position(0)
 	# Player spin input: a different torque in the air than on the ground.
 	var in_air := state.get_contact_count() == 0
 	var direction := Input.get_axis("rotate_left", "rotate_right")
@@ -92,8 +96,33 @@ func _back_sensor_hit(state: PhysicsDirectBodyState2D) -> Dictionary:
 	return state.get_space_state().get_rest_info(query)
 	
 func die() -> void:
+	if is_dead:
+		return
+
+	is_dead = true
+
+	# Show death UI
 	$"../CanvasLayer/CenterContainer/Skill".show()
-	last_collision_point
+
+	# Show Uranium
+	var uranium := $Uranium
+	uranium.reparent(get_tree().current_scene, true)
+	uranium.global_position = last_collision_point
+	uranium.show()
+
+	# Stop all physics movement
+	set_deferred("linear_velocity", Vector2.ZERO)
+	set_deferred("angular_velocity", 0.0)
+	set_deferred("freeze", true)
+
+	# Disable collisions
+	set_deferred("collision_layer", 0)
+	set_deferred("collision_mask", 0)
+	set_deferred("contact_monitor", false)
+
+	# Disable the back sensor
+	_back_sensor.set_deferred("monitoring", false)
+	_back_sensor.set_deferred("monitorable", false)
 
 func _on_body_entered(body: Node) -> void:
 	if str(body.name).begins_with("Wieza"):
