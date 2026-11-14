@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://csnftj07geeft"]
+[gd_scene format=4 uid="uid://csnftj07geeft"]
 
 [ext_resource type="PackedScene" uid="uid://b0geaeq6x5lau" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://cae8psg6fvxr5" path="res://brackeys_platformer_assets/sprites/world_tileset.png" id="2_0xm2m"]
@@ -70,9 +70,10 @@ sources/0 = SubResource("TileSetAtlasSource_h2yge")
 
 [node name="Player" parent="." unique_id=808825848 instance=ExtResource("1_ig7tw")]
 position = Vector2(-7, -19)
+torque = 50000.0
 
 [node name="Tile Map" type="Node2D" parent="." unique_id=883928445]
 
 [node name="Ground" type="TileMapLayer" parent="Tile Map" unique_id=470465558]
-tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 254, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAD//wAAAAAAAAAAAAD+/wAAAAAAAAAAAAD0/wAAAAAAAAAAAAD1/wAAAAAAAAAAAAD2/wAAAAAAAAAAAAD3/wAAAAAAAAAAAAD4/wAAAAAAAAAAAAD5/wAAAAAAAAAAAAD6/wAAAAAAAAAAAAD7/wAAAAAAAAAAAAD8/wAAAAAAAAAAAAD9/wAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAALAAAAAAAAAAAAAAAMAAEAAAAAAAAAAAANAAEAAAAAAAAAAAAOAAEAAAAAAAAAAAAPAAEAAAAAAAAAAAAQAAEAAAAAAAAAAAAFAP3/AAAAAAAAAAAGAP3/AAAAAAAAAAAHAP3/AAAAAAAAAAAIAP3/AAAAAAAAAAAJAP3/AAAAAAAAAAAKAP3/AAAAAAAAAAALAP3/AAAAAAAAAAAMAP3/AAAAAAAAAAANAP3/AAAAAAAAAAAOAP3/AAAAAAAAAAAPAP3/AAAAAAAAAAAQAP3/AAAAAAAAAAA=")
 tile_set = SubResource("TileSet_ot507")

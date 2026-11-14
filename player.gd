@@ -1,21 +1,13 @@
-extends CharacterBody2D
-
-
-@export var rotation_speed := 3.0
+extends RigidBody2D
 
 
 
-func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+@export var torque := 20000.0           # how hard it spins up
+@export var max_angular_speed := 15.0   # radians per second
 
 
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
+func _physics_process(_delta: float) -> void:
 	var direction := Input.get_axis("rotate_left", "rotate_right")
-	rotation += direction * rotation_speed * delta
-
-
-	move_and_slide()
+	apply_torque(direction * torque)
+	angular_velocity = clamp(angular_velocity, -max_angular_speed, max_angular_speed)
