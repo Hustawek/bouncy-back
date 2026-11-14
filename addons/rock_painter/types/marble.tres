@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="RockType" format=3]
+
+[ext_resource type="Script" path="res://addons/rock_painter/rock_type.gd" id="1_rei4s"]
+
+[resource]
+script = ExtResource("1_rei4s")
+display_name = "Marble"
+outline_color = Color(0.42745098, 0.42352942, 0.44705883, 1)
+shadow_color = Color(0.72156864, 0.7137255, 0.72156864, 1)
+mid_color = Color(0.84705883, 0.8392157, 0.8392157, 1)
+light_color = Color(0.92156863, 0.9137255, 0.90588236, 1)
+highlight_color = Color(0.9843137, 0.98039216, 0.972549, 1)
+patterns = 2
+streak_colors = PackedColorArray(0.5568628, 0.54901963, 0.57254905, 1, 0.64705884, 0.6392157, 0.65882355, 1, 0.43529412, 0.42745098, 0.45490196, 1)
+density = 0.04
+vein_length = 40
