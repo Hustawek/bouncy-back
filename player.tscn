@@ -2,13 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cimicfi5jbwo1" path="res://player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://u74sappk2vby" path="res://sprites/jakisBullshit.png" id="2_onrkg"]
+[ext_resource type="AudioStream" uid="uid://c344oprnxsrr5" path="res://sounds/spike.ogg" id="3_i3pqv"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ot507"]
 friction = 0.5
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r6cd3"]
-radius = 5.0
-height = 12.000002
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_60f5w"]
 radius = 5.996345
@@ -42,6 +39,16 @@ height = 24.04163
 radius = 7.0000005
 height = 32.0
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hqtel"]
+random_pitch = 1.3348398
+random_volume_offset_db = 2.0
+streams_count = 1
+stream_0/stream = ExtResource("3_i3pqv")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r6cd3"]
+radius = 5.0
+height = 12.000002
+
 [sub_resource type="Gradient" id="Gradient_onrkg"]
 colors = PackedColorArray(0.23753911, 0.23753914, 0.23753911, 1, 1, 1, 1, 1)
 
@@ -70,12 +77,6 @@ max_angular_speed = 5.0
 spin_drag = 1.0
 bounce_spin_factor = 0.0
 
-[node name="CollisionShape2D7" type="CollisionShape2D" parent="." unique_id=283282137]
-position = Vector2(-21, -15)
-rotation = 3.1415925
-scale = Vector2(0.99999994, 0.99999994)
-shape = SubResource("CapsuleShape2D_r6cd3")
-
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1734874628]
 rotation = -1.5707964
 texture = ExtResource("2_onrkg")
@@ -87,6 +88,7 @@ zoom = Vector2(2.025, 2.025)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BackSensor" unique_id=962849938]
+z_index = 100
 position = Vector2(-1, 13.000001)
 rotation = -1.6057029
 shape = SubResource("CapsuleShape2D_60f5w")
@@ -117,6 +119,7 @@ shape = SubResource("CapsuleShape2D_53ur1")
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="." unique_id=1822826580]
 position = Vector2(-9, -9)
 rotation = 2.3561945
+scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("CapsuleShape2D_k6fxa")
 
 [node name="CollisionShape2D8" type="CollisionShape2D" parent="." unique_id=366242435]
@@ -124,6 +127,18 @@ position = Vector2(-16, 0.99999994)
 rotation = 1.5707964
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("CapsuleShape2D_idk1l")
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="." unique_id=1625190636]
+position = Vector2(-21, -15)
+rotation = 3.1415925
+scale = Vector2(0.99999994, 0.99999994)
+stream = SubResource("AudioStreamRandomizer_hqtel")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="." unique_id=283282137]
+position = Vector2(-21, -15)
+rotation = 3.1415925
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("CapsuleShape2D_r6cd3")
 
 [node name="Uranium" type="GPUParticles2D" parent="." unique_id=1969688368]
 visible = false
