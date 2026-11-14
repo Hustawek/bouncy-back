@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cae8psg6fvxr5" path="res://brackeys_platformer_assets/sprites/world_tileset.png" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://blvvisru6lc5y" path="res://wieza.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://o4iexknw7k5a" path="res://ae.tscn" id="4_1bvp3"]
+[ext_resource type="FontFile" uid="uid://duig7wikd3vqf" path="res://brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="5_lquwl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h2yge"]
 texture = ExtResource("2_0xm2m")
@@ -68,22 +69,33 @@ texture = ExtResource("2_0xm2m")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_h2yge")
 
+[sub_resource type="LabelSettings" id="LabelSettings_1bvp3"]
+font = ExtResource("5_lquwl")
+font_size = 101
+
 [node name="Main" type="Node2D" unique_id=294539823]
 
 [node name="Player" parent="." unique_id=808825848 instance=ExtResource("1_ig7tw")]
-position = Vector2(-7, -19)
+position = Vector2(-9, -37)
+rotation = 1.5707964
 collision_layer = 1
 torque = 50000.0
+air_torque = 40000.0
+player_weight = 0.5
+bounce_base = 400.0
 bounce_speed_factor = 0.2
+bounce_max = 700.0
+bounce_cooldown = 0.15
+bounce_spin_factor = 1.0
+
+[node name="Wieza" parent="." unique_id=1380887936 instance=ExtResource("3_h2yge")]
+position = Vector2(-105, -73)
 
 [node name="Tile Map" type="Node2D" parent="." unique_id=883928445]
 
 [node name="Ground" type="TileMapLayer" parent="Tile Map" unique_id=470465558]
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAD//wAAAAAAAAAAAAD+/wAAAAAAAAAAAAD0/wAAAAAAAAAAAAD1/wAAAAAAAAAAAAD2/wAAAAAAAAAAAAD3/wAAAAAAAAAAAAD4/wAAAAAAAAAAAAD5/wAAAAAAAAAAAAD6/wAAAAAAAAAAAAD7/wAAAAAAAAAAAAD8/wAAAAAAAAAAAAD9/wAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAALAAAAAAAAAAAAAAAMAAEAAAAAAAAAAAANAAEAAAAAAAAAAAAOAAEAAAAAAAAAAAAPAAEAAAAAAAAAAAAQAAEAAAAAAAAAAAAFAP3/AAAAAAAAAAAGAP3/AAAAAAAAAAAHAP3/AAAAAAAAAAAIAP3/AAAAAAAAAAAJAP3/AAAAAAAAAAAKAP3/AAAAAAAAAAALAP3/AAAAAAAAAAAMAP3/AAAAAAAAAAANAP3/AAAAAAAAAAAOAP3/AAAAAAAAAAAPAP3/AAAAAAAAAAAQAP3/AAAAAAAAAAA=")
 tile_set = SubResource("TileSet_ot507")
-
-[node name="Wieza" parent="." unique_id=1380887936 instance=ExtResource("3_h2yge")]
-position = Vector2(-107, -57)
 
 [node name="AE" parent="." unique_id=811360954 instance=ExtResource("4_1bvp3")]
 position = Vector2(90, -33)
@@ -93,3 +105,18 @@ position = Vector2(110, -33)
 
 [node name="AE3" parent="." unique_id=841591802 instance=ExtResource("4_1bvp3")]
 position = Vector2(130, -33)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=526972211]
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer" unique_id=2026540266]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Skill" type="Label" parent="CanvasLayer/CenterContainer" unique_id=272155047]
+visible = false
+layout_mode = 2
+text = "skill issue"
+label_settings = SubResource("LabelSettings_1bvp3")

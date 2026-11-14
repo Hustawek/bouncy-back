@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://blvvisru6lc5y"]
 
 [ext_resource type="Shape2D" uid="uid://d2e3c2a0f8hoj" path="res://new_capsule_shape_2d.tres" id="1_wjoio"]
+[ext_resource type="Texture2D" uid="uid://byk61wqed2ia4" path="res://sprites/wierza5G.png" id="2_o5qkg"]
 
 [node name="Wieza" type="RigidBody2D" unique_id=1380887936]
 mass = 100.0
@@ -9,3 +10,6 @@ freeze = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2087214745]
 shape = ExtResource("1_wjoio")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2141945056]
+texture = ExtResource("2_o5qkg")

@@ -2,15 +2,15 @@ extends RigidBody2D
 
 
 
-@export var torque := 20000.0           # how hard it spins up while touching something
-@export var air_torque := 20000.0       # how hard it spins up while in the air
-@export var max_angular_speed := 15.0   # radians per second
+@export var torque := 40000.0           # how hard it spins up while touching something
+@export var air_torque := 40000.0       # how hard it spins up while in the air
+@export var max_angular_speed := 40.0   # radians per second
 
 @export_group("Bounce")
 @export_range(0.0, 1.0) var player_weight := 0.5   # 0 = straight out of the surface, 1 = player's up
-@export var bounce_base := 300.0          # impulse even on a soft landing
+@export var bounce_base := 400.0          # impulse even on a soft landing
 @export var bounce_speed_factor := 0.5    # extra impulse per px/s of impact speed
-@export var bounce_max := 900.0           # cap on the total impulse
+@export var bounce_max := 700.0           # cap on the total impulse
 @export var bounce_cooldown := 0.15       # seconds before another bounce can fire
 @export var bounce_spin_factor := 1.0     # spin from an off-center bounce: 0 = none, 1 = realistic
 
@@ -28,7 +28,11 @@ func _ready() -> void:
 	_back_sensor.body_entered.connect(_on_back_sensor_body_entered)
 
 
+var last_collision_point := Vector2.ZERO
+
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	if state.get_contact_count() > 0:
+		last_collision_point = state.transform * state.get_contact_local_position(0)
 	# Player spin input: a different torque in the air than on the ground.
 	var in_air := state.get_contact_count() == 0
 	var direction := Input.get_axis("rotate_left", "rotate_right")
@@ -86,20 +90,18 @@ func _back_sensor_hit(state: PhysicsDirectBodyState2D) -> Dictionary:
 	query.collision_mask = _back_sensor.collision_mask
 	query.exclude = [get_rid()]
 	return state.get_space_state().get_rest_info(query)
-
+	
+func die() -> void:
+	$"../CanvasLayer/CenterContainer/Skill".show()
+	last_collision_point
 
 func _on_body_entered(body: Node) -> void:
-	print(body.name)
 	if str(body.name).begins_with("Wieza"):
-		particles.restart()
-		particles.emitting = true
+		die()
 	if str(body.name).begins_with("AE"):
-		particles.restart()
-		particles.emitting = true
+		die()
 func _on_back_sensor_body_entered(body: Node) -> void:
-	print(body.name)
+	if str(body.name).begins_with("AE"):
+		die()
 	if str(body.name).begins_with("Wieza"):
 		body.queue_free()
-	if str(body.name).begins_with("AE"):
-		particles.restart()
-		particles.emitting = true
