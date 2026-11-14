@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="RockType" format=3]
+
+[ext_resource type="Script" path="res://addons/rock_painter/rock_type.gd" id="1_xw8gn"]
+
+[resource]
+script = ExtResource("1_xw8gn")
+display_name = "Basalt"
+outline_color = Color(0.047058824, 0.047058824, 0.0627451, 1)
+shadow_color = Color(0.14509805, 0.14901961, 0.17254902, 1)
+mid_color = Color(0.20392157, 0.20784314, 0.23529412, 1)
+light_color = Color(0.26666668, 0.27450982, 0.30588236, 1)
+highlight_color = Color(0.3529412, 0.36078432, 0.4, 1)
+patterns = 2
+streak_colors = PackedColorArray(0.30588236, 0.3137255, 0.34901962, 1, 0.23529412, 0.24313726, 0.27450982, 1)
+density = 0.03

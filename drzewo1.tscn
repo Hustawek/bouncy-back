@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://mqhlmk4l8hef"]
+
+[ext_resource type="Texture2D" uid="uid://cocqxmdie7iu4" path="res://sprites/drzewo1.png" id="1_8uegc"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_v8kj3"]
+absorbent = true
+
+[node name="Drzewo" type="RigidBody2D" unique_id=2085923321]
+physics_material_override = SubResource("PhysicsMaterial_v8kj3")
+gravity_scale = 0.0
+freeze = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2076787718]
+texture = ExtResource("1_8uegc")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=391141364]
+polygon = PackedVector2Array(4, 31, -2, 30, -9, 21, -9, 8, -7, 5, -12, 0, -28, 0, -31, -3, -32, -11, -17, -30, 11, -31, 19, -25, 19, -13, 13, 10, -1, 6, -4, 15, 2, 24)

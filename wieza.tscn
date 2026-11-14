@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://blvvisru6lc5y"]
 
 [ext_resource type="Shape2D" uid="uid://d2e3c2a0f8hoj" path="res://new_capsule_shape_2d.tres" id="1_wjoio"]
-[ext_resource type="Texture2D" uid="uid://byk61wqed2ia4" path="res://sprites/wierza5G.png" id="2_o5qkg"]
+[ext_resource type="Texture2D" uid="uid://drowwme7cv7ni" path="res://sprites/wierza5Goutline.png" id="2_o5qkg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_60f5w"]
 radius = 16.492422

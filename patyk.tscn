@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://c07g2aafd418g"]
+
+[ext_resource type="Texture2D" uid="uid://cllmkh8i77i8k" path="res://sprites/patyk.png" id="1_vd5yi"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_v8kj3"]
+absorbent = true
+
+[node name="Patyk" type="RigidBody2D" unique_id=2085923321]
+physics_material_override = SubResource("PhysicsMaterial_v8kj3")
+gravity_scale = 0.0
+freeze = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2076787718]
+texture = ExtResource("1_vd5yi")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=391141364]
+polygon = PackedVector2Array(0, 16, 0, 12, 1, 12, 1, 7, 2, 7, 2, -9, 1, -9, 1, -10, 0, -10, 0, -14, -1, -14, -1, -16, -2, -16, -2, -9, -2, -8, -1, -8, -1, -7, 0, -7, 0, 5, -1, 5, -1, 10, -2, 10, -2, 16)

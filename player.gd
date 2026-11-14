@@ -2,9 +2,9 @@ extends RigidBody2D
 
 
 
-@export var torque := 100000.0           # how hard it spins up while touching something
-@export var air_torque := 100000.0       # how hard it spins up while in the air
-@export var max_angular_speed := 40.0   # radians per second
+@export var torque := 200000.0           # how hard it spins up while touching something
+@export var air_torque := 200000.0       # how hard it spins up while in the air
+@export var max_angular_speed := 100.0   # radians per second
 
 @export_group("Bounce")
 @export_range(0.0, 1.0) var player_weight := 0.5   # 0 = straight out of the surface, 1 = player's up
@@ -14,7 +14,6 @@ extends RigidBody2D
 @export var bounce_cooldown := 0.15       # seconds before another bounce can fire
 @export var bounce_spin_factor := 1.0     # spin from an off-center bounce: 0 = none, 1 = realistic
 
-@onready var particles = $GPUParticles2D
 @onready var _back_sensor: Area2D = $BackSensor
 @onready var _back_shape: CollisionShape2D = $BackSensor/CollisionShape2D
 var _cooldown_left := 0.0
