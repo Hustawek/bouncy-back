@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cv50y6npv8ufw" path="res://sprites/jakisBullshit1.png" id="2_hqtel"]
 [ext_resource type="FontFile" uid="uid://duig7wikd3vqf" path="res://brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="3_i3pqv"]
 [ext_resource type="AudioStream" uid="uid://c344oprnxsrr5" path="res://sounds/spike.ogg" id="4_hqtel"]
+[ext_resource type="AudioStream" uid="uid://basodesm7xjg7" path="res://sounds/theme.ogg" id="5_sweqy"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ot507"]
 friction = 0.5
@@ -188,9 +189,15 @@ position = Vector2(-21, -15)
 rotation = 3.1415925
 scale = Vector2(0.99999994, 0.99999994)
 stream = SubResource("AudioStreamRandomizer_hqtel")
+volume_db = 7.0
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="." unique_id=283282137]
 position = Vector2(-21, -15)
 rotation = 3.1415925
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("CapsuleShape2D_r6cd3")
+
+[node name="Theme" type="AudioStreamPlayer" parent="." unique_id=462983019]
+stream = ExtResource("5_sweqy")
+volume_db = 5.0
+autoplay = true

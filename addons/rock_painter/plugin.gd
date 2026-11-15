@@ -7,6 +7,7 @@ const POINT_SPACING_SCREEN := 3.0   # px on screen between recorded stroke point
 const SIMPLIFY_SCREEN := 1.5        # px on screen a simplified outline may deviate
 const MIN_AREA := 16.0              # px², smaller strokes are ignored
 const STROKE_COLOR := Color(1.0, 0.75, 0.2)
+const BANNER_HEIGHT := 28.0
 const RANDOM_LABEL := "Random"
 
 var _toolbar: HBoxContainer
@@ -16,6 +17,10 @@ var _types: Array[RockType] = []
 var _edited: Node
 var _drawing := false
 var _stroke := PackedVector2Array()  # canvas (scene-global) coordinates
+# Invisible layer over the 2D view that takes the mouse while rock mode is on,
+# so the selection (which undo changes) can't break drawing and nothing can be
+# dragged. Unused events (scroll, pinch, middle mouse) fall through to the view.
+var _shield: Control
 
 
 func _enter_tree() -> void:
@@ -26,7 +31,7 @@ func _enter_tree() -> void:
 	_draw_button.text = "Draw Rock"
 	_draw_button.toggle_mode = true
 	_draw_button.flat = true
-	_draw_button.tooltip_text = "Drag a closed loop in the 2D view to create a rock.\nRight-click or Esc cancels a stroke."
+	_draw_button.tooltip_text = "Drag a closed loop in the 2D view to create a rock.\nRight-click or Esc cancels a stroke; Esc again leaves rock mode."
 	_draw_button.toggled.connect(_on_draw_toggled)
 	_toolbar.add_child(_draw_button)
 
@@ -49,6 +54,14 @@ func _enter_tree() -> void:
 	_toolbar.add_child(regen_button)
 
 	add_control_to_container(CONTAINER_CANVAS_EDITOR_MENU, _toolbar)
+
+	_shield = Control.new()
+	_shield.name = "RockPainterShield"
+	_shield.mouse_filter = Control.MOUSE_FILTER_PASS
+	_shield.visible = false
+	_shield.gui_input.connect(_on_shield_input)
+	_shield.draw.connect(_draw_shield)
+	_type_picker.item_selected.connect(func(_i): _shield.queue_redraw())  # banner shows the type
 	_scan_types()
 	EditorInterface.get_resource_filesystem().filesystem_changed.connect(_scan_types)
 
@@ -57,10 +70,11 @@ func _exit_tree() -> void:
 	EditorInterface.get_resource_filesystem().filesystem_changed.disconnect(_scan_types)
 	remove_control_from_container(CONTAINER_CANVAS_EDITOR_MENU, _toolbar)
 	_toolbar.queue_free()
+	_shield.queue_free()
 
 
-# The 2D editor only forwards mouse input to plugins that handle the selected
-# node, so we claim every node (we ignore input unless Draw Rock is on).
+# Claiming every node makes the 2D editor call _forward_canvas_draw_over_viewport,
+# which is how we find the 2D view to put the shield on.
 func _handles(object: Object) -> bool:
 	return object is Node
 
@@ -69,9 +83,24 @@ func _edit(object: Object) -> void:
 	_edited = object as Node
 
 
-func _forward_canvas_gui_input(event: InputEvent) -> bool:
-	if not _draw_button.button_pressed or EditorInterface.get_edited_scene_root() == null:
-		return false
+# `overlay` is the 2D view's input control. The shield goes inside it, so events
+# the shield doesn't accept continue to the view (zoom, pan).
+func _forward_canvas_draw_over_viewport(overlay: Control) -> void:
+	if _shield.get_parent() == null:
+		_attach_shield.call_deferred(overlay)
+
+
+func _attach_shield(overlay: Control) -> void:
+	if _shield.get_parent() != null:
+		return
+	overlay.add_child(_shield)
+	_shield.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	_shield.visible = _draw_button.button_pressed
+
+
+func _on_shield_input(event: InputEvent) -> void:
+	if EditorInterface.get_edited_scene_root() == null:
+		return
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
@@ -80,51 +109,69 @@ func _forward_canvas_gui_input(event: InputEvent) -> bool:
 			elif _drawing:
 				_drawing = false
 				_finish_stroke()
-			update_overlays()
-			return true
-		if event.button_index == MOUSE_BUTTON_RIGHT and _drawing:
-			_cancel_stroke()
-			return true
+			_shield.queue_redraw()
+			_shield.accept_event()
+		elif event.button_index == MOUSE_BUTTON_RIGHT:
+			# Also blocks the editor's right-click menu while in rock mode.
+			if event.pressed and _drawing:
+				_cancel_stroke()
+			_shield.accept_event()
 	elif event is InputEventMouseMotion and _drawing:
 		var p := _to_canvas(event.position)
 		if _stroke[-1].distance_to(p) * _zoom() >= POINT_SPACING_SCREEN:
 			_stroke.append(p)
-			update_overlays()
-		return true
-	elif event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE and _drawing:
-		_cancel_stroke()
-		return true
-	return false
+			_shield.queue_redraw()
+		_shield.accept_event()
 
 
-func _forward_canvas_draw_over_viewport(overlay: Control) -> void:
-	if not _draw_button.button_pressed:
+# Esc: cancel the stroke in progress, otherwise leave rock mode. Only while the
+# mouse is over the 2D view, so Esc elsewhere in the editor is left alone.
+func _input(event: InputEvent) -> void:
+	if not _draw_button.button_pressed or not _shield.is_visible_in_tree():
 		return
-	overlay.draw_string(overlay.get_theme_default_font(), Vector2(12, overlay.size.y - 12),
-		"Rock Painter: drag a loop to add a rock (%s)" % _type_picker.get_item_text(_type_picker.selected),
-		HORIZONTAL_ALIGNMENT_LEFT, -1, 14, STROKE_COLOR)
+	if not (event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_ESCAPE):
+		return
+	if not _shield.get_global_rect().has_point(_shield.get_global_mouse_position()):
+		return
+	if _drawing:
+		_cancel_stroke()
+	else:
+		_draw_button.button_pressed = false
+	get_viewport().set_input_as_handled()
+
+
+func _draw_shield() -> void:
+	var font := _shield.get_theme_default_font()
+	_shield.draw_rect(Rect2(0, 0, _shield.size.x, BANNER_HEIGHT), Color(STROKE_COLOR, 0.9))
+	_shield.draw_string(font, Vector2(10, BANNER_HEIGHT - 9),
+		"ROCK MODE — drag a loop to add a rock (%s)  ·  Esc to exit" % _type_picker.get_item_text(_type_picker.selected),
+		HORIZONTAL_ALIGNMENT_LEFT, -1, 15, Color.BLACK)
 	if _drawing and _stroke.size() > 1:
 		var xf := _canvas_xform()
 		var pts := PackedVector2Array()
 		for p in _stroke:
 			pts.append(xf * p)
 		pts.append(pts[0])
-		overlay.draw_polyline(pts, STROKE_COLOR, 2.0, true)
+		_shield.draw_polyline(pts, STROKE_COLOR, 2.0, true)
 
 
 func _on_draw_toggled(on: bool) -> void:
 	_drawing = false
+	_stroke.clear()
+	_shield.visible = on
 	var root := EditorInterface.get_edited_scene_root()
 	if on and root and EditorInterface.get_selection().get_selected_nodes().is_empty():
-		# Nothing selected means no input reaches us; select the root.
+		# The shield is put in place from the 2D editor's overlay callback,
+		# which only runs while something is selected.
 		EditorInterface.get_selection().add_node(root)
 	update_overlays()
+	_shield.queue_redraw()
 
 
 func _cancel_stroke() -> void:
 	_drawing = false
 	_stroke.clear()
-	update_overlays()
+	_shield.queue_redraw()
 
 
 func _finish_stroke() -> void:
