@@ -40,16 +40,6 @@ height = 24.04163
 radius = 7.0000005
 height = 32.0
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hqtel"]
-random_pitch = 1.3348398
-random_volume_offset_db = 2.0
-streams_count = 1
-stream_0/stream = ExtResource("4_hqtel")
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r6cd3"]
-radius = 5.0
-height = 12.000002
-
 [sub_resource type="Gradient" id="Gradient_onrkg"]
 colors = PackedColorArray(0.23753911, 0.23753914, 0.23753911, 1, 1, 1, 1, 1)
 
@@ -72,6 +62,16 @@ color_ramp = SubResource("GradientTexture1D_onrkg")
 font = ExtResource("3_i3pqv")
 font_size = 101
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hqtel"]
+random_pitch = 1.3348398
+random_volume_offset_db = 2.0
+streams_count = 1
+stream_0/stream = ExtResource("4_hqtel")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r6cd3"]
+radius = 5.0
+height = 12.000002
+
 [node name="Player" type="RigidBody2D" unique_id=928365524]
 collision_layer = 2
 physics_material_override = SubResource("PhysicsMaterial_ot507")
@@ -86,6 +86,7 @@ bounce_base = 300.0
 bounce_speed_factor = 0.2
 bounce_spin_factor = 0.0
 bounce_carry = 0.3
+lenght_of_bounce_animation = 0.4
 
 [node name="PL" type="Sprite2D" parent="." unique_id=1734874628]
 rotation = -1.5707964
