@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://chb1xyg4athfs" path="res://sprites/sunshineAndRainbows.png" id="1_7v7i5"]
 [ext_resource type="PackedScene" uid="uid://b0geaeq6x5lau" path="res://player.tscn" id="2_wd5fm"]
-[ext_resource type="FontFile" uid="uid://duig7wikd3vqf" path="res://brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="3_g7br2"]
 [ext_resource type="Script" uid="uid://di5choml2pemu" path="res://addons/rock_painter/rock_2d.gd" id="4_yhxyr"]
 [ext_resource type="Resource" path="res://addons/rock_painter/types/mossy_stone.tres" id="6_3xgf8"]
 [ext_resource type="Resource" path="res://addons/rock_painter/types/andesite.tres" id="6_pqxxa"]
@@ -11,55 +10,35 @@
 [ext_resource type="Resource" path="res://addons/rock_painter/types/sandstone.tres" id="8_u82sa"]
 [ext_resource type="PackedScene" path="res://Building blocks/direction_zone.tscn" id="9_yhxyr"]
 [ext_resource type="PackedScene" uid="uid://b8282mc6snhfk" path="res://Building blocks/deska.tscn" id="10_yhxyr"]
+[ext_resource type="Script" uid="uid://b7wthpp2ysusj" path="res://levele/arrrr.gd" id="13_c4ccv"]
 [ext_resource type="Resource" path="res://addons/rock_painter/types/basalt.tres" id="14_3kcod"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_u82sa"]
 friction = 0.7
 
-[sub_resource type="LabelSettings" id="LabelSettings_tgtrw"]
-font = ExtResource("3_g7br2")
-font_size = 101
-
 [sub_resource type="LabelSettings" id="LabelSettings_04g2k"]
 font = ExtResource("7_c4ccv")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_60f5w"]
+size = Vector2(166, 67)
 
 [node name="Level0" type="Node2D" unique_id=1965288100]
 
 [node name="Common" type="Node2D" parent="." unique_id=1078413091]
 
 [node name="SunshineAndRainbows" type="Sprite2D" parent="Common" unique_id=2054946208]
-visible = false
 z_index = -200
 position = Vector2(277, -100)
 texture = ExtResource("1_7v7i5")
 
 [node name="Player" parent="Common" unique_id=928365524 instance=ExtResource("2_wd5fm")]
-position = Vector2(894, -668)
+position = Vector2(121, -34)
 rotation = 3.1571608
 collision_layer = 1
 physics_material_override = SubResource("PhysicsMaterial_u82sa")
 torque = 100000.0
 air_torque = 10000.0
 spin_drag = 0.2
-
-[node name="CanvasLayer" type="CanvasLayer" parent="Common" unique_id=1010713381]
-
-[node name="CenterContainer" type="CenterContainer" parent="Common/CanvasLayer" unique_id=1753001389]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 5.0
-offset_top = -102.0
-offset_right = 5.0
-offset_bottom = -102.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Skill" type="Label" parent="Common/CanvasLayer/CenterContainer" unique_id=23252155]
-visible = false
-layout_mode = 2
-text = "skill issue"
-label_settings = SubResource("LabelSettings_tgtrw")
 
 [node name="Rocks" type="Node2D" parent="." unique_id=1566347642]
 
@@ -665,6 +644,14 @@ rock_type = ExtResource("14_3kcod")
 rock_seed = 2777080670
 baked_png = PackedByteArray("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")
 baked_offset = Vector2(-59, -30)
+
+[node name="ARRRR" type="Area2D" parent="." unique_id=177922302]
+position = Vector2(1155, -574)
+script = ExtResource("13_c4ccv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ARRRR" unique_id=1842960061]
+position = Vector2(28, -127)
+shape = SubResource("RectangleShape2D_60f5w")
 
 [editable path="Direction Zones/DirectionZone"]
 [editable path="Direction Zones/DirectionZone2"]
