@@ -131,9 +131,10 @@ shape = SubResource("CapsuleShape2D_idk1l")
 visible = false
 process_material = SubResource("ParticleProcessMaterial_onrkg")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1763703634]
+[node name="SkillO" type="CanvasLayer" parent="." unique_id=1763703634]
+visible = false
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer" unique_id=2021548680]
+[node name="CenterContainer" type="CenterContainer" parent="SkillO" unique_id=2021548680]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -143,11 +144,30 @@ offset_right = -1.0
 offset_bottom = -159.0
 grow_horizontal = 2
 grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_visual_only = false
 
-[node name="Skill" type="Label" parent="CanvasLayer/CenterContainer" unique_id=30798290]
-visible = false
+[node name="Skill" type="Label" parent="SkillO/CenterContainer" unique_id=30798290]
 layout_mode = 2
 text = "skill issue"
+label_settings = SubResource("LabelSettings_hqtel")
+
+[node name="CenterContainer2" type="CenterContainer" parent="SkillO" unique_id=992302359]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 157.0
+offset_right = -1.0
+offset_bottom = 157.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_visual_only = false
+
+[node name="Skill2" type="Label" parent="SkillO/CenterContainer2" unique_id=426409432]
+layout_mode = 2
+text = "press SPACE"
 label_settings = SubResource("LabelSettings_hqtel")
 
 [node name="JumpSound" type="AudioStreamPlayer" parent="." unique_id=718552267]
