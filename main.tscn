@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://csnftj07geeft"]
 
 [ext_resource type="PackedScene" uid="uid://b0geaeq6x5lau" path="res://player.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://blvvisru6lc5y" path="res://wieza.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://blvvisru6lc5y" path="res://Building blocks/wieza.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://coqar0wypgnsr" path="res://spike.tscn" id="5_7mycd"]
 [ext_resource type="Script" uid="uid://di5choml2pemu" path="res://addons/rock_painter/rock_2d.gd" id="6_4c57u"]
 [ext_resource type="Resource" path="res://addons/rock_painter/types/granite.tres" id="7_4c57u"]
