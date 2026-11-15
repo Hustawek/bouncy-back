@@ -7,11 +7,7 @@ extends RigidBody2D
 @export var air_torque := 100000.0       # how hard it spins up while in the air
 @export var max_angular_speed := 40.0   # radians per second
 @export var spin_drag := 0.0           # how fast spin fades with no key held (1.0 = halves in ~0.7 s, 0 = never)
-<<<<<<< HEAD
-
-=======
 @export var shift_factor := 1.5
->>>>>>> 0f245fe (idk)
 @export_group("Bounce")
 @export_range(0.0, 1.0) var player_weight := 0.5   # 0 = straight out of the surface, 1 = player's up
 @export var bounce_base := 400.0                   # impulse even on a soft landing
