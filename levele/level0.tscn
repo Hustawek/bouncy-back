@@ -713,6 +713,7 @@ script = ExtResource("12_pqxxa")
 position = Vector2(1715, -792)
 shape = SubResource("RectangleShape2D_60f5w")
 
+[editable path="Common/Player"]
 [editable path="Direction Zones/DirectionZone"]
 [editable path="Direction Zones/DirectionZone2"]
 [editable path="Direction Zones/DirectionZone3"]
