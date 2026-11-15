@@ -16,7 +16,7 @@ extends RigidBody2D
 @export var bounce_cooldown := 0.15       # seconds before another bounce can fire
 @export var bounce_spin_factor := 1.0     # spin from an off-center bounce: 0 = none, 1 = realistic
 @export_range(0.0, 1.0) var bounce_carry := 0.8   # share of incoming speed along the surface kept: 0 = none, 1 = all
-
+var texture_reset_timer: Timer
 @onready var _back_sensor: Area2D = $BackSensor
 @onready var _back_shape: CollisionShape2D = $BackSensor/CollisionShape2D
 var _cooldown_left := 0.0
@@ -30,6 +30,10 @@ func _ready() -> void:
 	max_contacts_reported = 4
 	body_entered.connect(_on_body_entered)
 	_back_sensor.body_entered.connect(_on_back_sensor_body_entered)
+	texture_reset_timer = Timer.new()
+	texture_reset_timer.one_shot = true
+	texture_reset_timer.timeout.connect(_reset_texture)
+	add_child(texture_reset_timer)
 
 
 var last_collision_point := Vector2.ZERO
@@ -103,7 +107,10 @@ func _try_bounce(state: PhysicsDirectBodyState2D) -> void:
 
 	_cooldown_left = bounce_cooldown
 	$JumpSound.play()
-
+	$PL.texture = load("res://sprites/jakisBullshit2.png")
+	texture_reset_timer.start(0.15)
+func _reset_texture() -> void:
+	$PL.texture = load("res://sprites/jakisBullshit1.png")
 
 # Asks the physics engine where the BackSensor's shape touches something.
 # Returns {} if it touches nothing, otherwise a dictionary with "point" and
