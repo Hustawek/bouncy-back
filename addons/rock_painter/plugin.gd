@@ -55,12 +55,7 @@ func _enter_tree() -> void:
 
 	add_control_to_container(CONTAINER_CANVAS_EDITOR_MENU, _toolbar)
 
-	_shield = Control.new()
-	_shield.name = "RockPainterShield"
-	_shield.mouse_filter = Control.MOUSE_FILTER_PASS
-	_shield.visible = false
-	_shield.gui_input.connect(_on_shield_input)
-	_shield.draw.connect(_draw_shield)
+	_make_shield()
 	_type_picker.item_selected.connect(func(_i): _shield.queue_redraw())  # banner shows the type
 	_scan_types()
 	EditorInterface.get_resource_filesystem().filesystem_changed.connect(_scan_types)
@@ -70,7 +65,20 @@ func _exit_tree() -> void:
 	EditorInterface.get_resource_filesystem().filesystem_changed.disconnect(_scan_types)
 	remove_control_from_container(CONTAINER_CANVAS_EDITOR_MENU, _toolbar)
 	_toolbar.queue_free()
-	_shield.queue_free()
+	if _shield:
+		_shield.queue_free()
+
+
+# Also called when _shield is missing: after the editor reloads this script
+# while the plugin is running, new variables start empty and _enter_tree
+# doesn't run again.
+func _make_shield() -> void:
+	_shield = Control.new()
+	_shield.name = "RockPainterShield"
+	_shield.mouse_filter = Control.MOUSE_FILTER_PASS
+	_shield.visible = false
+	_shield.gui_input.connect(_on_shield_input)
+	_shield.draw.connect(_draw_shield)
 
 
 # Claiming every node makes the 2D editor call _forward_canvas_draw_over_viewport,
@@ -86,6 +94,8 @@ func _edit(object: Object) -> void:
 # `overlay` is the 2D view's input control. The shield goes inside it, so events
 # the shield doesn't accept continue to the view (zoom, pan).
 func _forward_canvas_draw_over_viewport(overlay: Control) -> void:
+	if _shield == null:
+		_make_shield()
 	if _shield.get_parent() == null:
 		_attach_shield.call_deferred(overlay)
 
@@ -127,7 +137,7 @@ func _on_shield_input(event: InputEvent) -> void:
 # Esc: cancel the stroke in progress, otherwise leave rock mode. Only while the
 # mouse is over the 2D view, so Esc elsewhere in the editor is left alone.
 func _input(event: InputEvent) -> void:
-	if not _draw_button.button_pressed or not _shield.is_visible_in_tree():
+	if _shield == null or not _draw_button.button_pressed or not _shield.is_visible_in_tree():
 		return
 	if not (event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_ESCAPE):
 		return
@@ -156,6 +166,8 @@ func _draw_shield() -> void:
 
 
 func _on_draw_toggled(on: bool) -> void:
+	if _shield == null:
+		_make_shield()
 	_drawing = false
 	_stroke.clear()
 	_shield.visible = on
