@@ -7,7 +7,11 @@ extends RigidBody2D
 @export var air_torque := 100000.0       # how hard it spins up while in the air
 @export var max_angular_speed := 40.0   # radians per second
 @export var spin_drag := 0.0           # how fast spin fades with no key held (1.0 = halves in ~0.7 s, 0 = never)
+<<<<<<< HEAD
 
+=======
+@export var shift_factor := 1.5
+>>>>>>> 0f245fe (idk)
 @export_group("Bounce")
 @export_range(0.0, 1.0) var player_weight := 0.5   # 0 = straight out of the surface, 1 = player's up
 @export var bounce_base := 400.0                   # impulse even on a soft landing
@@ -77,6 +81,10 @@ func _try_bounce(state: PhysicsDirectBodyState2D) -> void:
 	# How fast we were moving into the surface just before touching it.
 	var impact_speed := maxf(-_prev_velocity.dot(normal), 0.0)
 	var strength := minf(bounce_base + bounce_speed_factor * impact_speed, bounce_max)
+	var collider_id: int = hit["collider_id"]
+	var collider := instance_from_id(collider_id) as CollisionObject2D
+	#if collider.name.begins_with("Wieza"):
+		#strength *= 1.5
 	var impulse := dir * strength
 
 	# Launch velocity plus part of the incoming speed along the surface, so
@@ -148,7 +156,7 @@ func die() -> void:
 	is_dead = true
 
 	# Show death UI
-	$"../CanvasLayer/CenterContainer/Skill".show()
+	$Skill.show()
 
 	# Show Uranium
 	var uranium := $Uranium
@@ -171,8 +179,6 @@ func die() -> void:
 	_back_sensor.set_deferred("monitorable", false)
 
 func _on_body_entered(body: Node) -> void:
-	if str(body.name).begins_with("Wieza"):
-		die()
 	if str(body.name).begins_with("Spike"):
 		die()
 func _on_back_sensor_body_entered(body: Node) -> void:
