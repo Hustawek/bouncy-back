@@ -33,11 +33,15 @@ func _ready() -> void:
 
 
 var last_collision_point := Vector2.ZERO
-
+func _input(event: InputEvent) -> void:
+	if is_dead and event is InputEventKey:
+		if event.pressed and not event.echo and event.keycode == KEY_SPACE:
+			get_tree().call_deferred(
+				"change_scene_to_file",
+                "res://levele/level0.tscn"
+			)
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	if is_dead:
-		if Input.is_key_pressed(KEY_SPACE):
-			get_tree().change_scene_to_file("res://levele/level0.tscn")
 		return
 	if global_position.y > 500:
 		die()

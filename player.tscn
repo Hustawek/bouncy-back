@@ -9,11 +9,11 @@
 friction = 0.5
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_60f5w"]
-radius = 12.992081
-height = 44.042995
+radius = 5.996345
+height = 23.98538
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ot507"]
-radius = 1.0
+radius = 3.0
 height = 12.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_73sme"]

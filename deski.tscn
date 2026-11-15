@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://780khl1jtsmo"]
-
-[ext_resource type="Texture2D" uid="uid://c3f7iwlfdhvtt" path="res://sprites/deski.png" id="1_i341e"]
-
-[node name="Deski" type="RigidBody2D" unique_id=1916712427]
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=700186163]
-texture = ExtResource("1_i341e")

@@ -7,7 +7,7 @@
 [ext_resource type="Resource" path="res://addons/rock_painter/types/stone.tres" id="7_fsk10"]
 [ext_resource type="Resource" path="res://addons/rock_painter/types/andesite.tres" id="7_nob4c"]
 [ext_resource type="FontFile" uid="uid://0b1svyj3ye7y" path="res://brackeys_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="8_jymnd"]
-[ext_resource type="PackedScene" path="res://direction_zone.tscn" id="9_kdg45"]
+[ext_resource type="PackedScene" path="res://Building blocks/direction_zone.tscn" id="9_kdg45"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_04g2k"]
 font = ExtResource("8_jymnd")
