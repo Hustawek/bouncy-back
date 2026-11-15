@@ -1,3 +1,4 @@
+class_name Player
 extends RigidBody2D
 
 
@@ -22,6 +23,7 @@ var _cooldown_left := 0.0
 var _prev_velocity := Vector2.ZERO
 
 var is_dead := false
+var facing_left := false   # set by DirectionZone; mirrors the body and swaps A/D
 
 
 func _ready() -> void:
@@ -41,6 +43,8 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	# Player spin input: a different torque in the air than on the ground.
 	var in_air := state.get_contact_count() == 0
 	var direction := Input.get_axis("rotate_left", "rotate_right")
+	if facing_left:
+		direction = -direction
 	state.apply_torque(direction * (air_torque if in_air else torque))
 	# With no key held, the spin fades out gradually instead of stopping.
 	if direction == 0.0:
@@ -103,7 +107,40 @@ func _back_sensor_hit(state: PhysicsDirectBodyState2D) -> Dictionary:
 	query.collision_mask = _back_sensor.collision_mask
 	query.exclude = [get_rid()]
 	return state.get_space_state().get_rest_info(query)
-	
+
+
+# Called by DirectionZone. Only acts when the direction actually changes.
+func set_facing_left(left: bool) -> void:
+	if left == facing_left or is_dead:
+		return
+	facing_left = left
+	# Zones report the player while physics is busy, when shapes can't be
+	# moved, so flip at the end of the frame.
+	_mirror.call_deferred()
+
+
+# Mirrors the player left-to-right on screen. Physics bodies can't use a
+# negative scale, so every transform in the tree is mirrored instead: x
+# position and rotation are negated, and sprites also get flipped. The
+# capsules are symmetric, so they need no flip of their own.
+func _mirror() -> void:
+	if is_dead:
+		return
+	_mirror_children(self)
+	rotation = -rotation
+	angular_velocity = -angular_velocity
+
+
+func _mirror_children(node: Node) -> void:
+	for child in node.get_children():
+		if child is Node2D:
+			child.position.x = -child.position.x
+			child.rotation = -child.rotation
+			if child is Sprite2D:
+				child.flip_h = not child.flip_h
+		_mirror_children(child)
+
+
 func die() -> void:
 	if is_dead:
 		return

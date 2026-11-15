@@ -12,7 +12,6 @@ const RANDOM_LABEL := "Random"
 var _toolbar: HBoxContainer
 var _draw_button: Button
 var _type_picker: OptionButton
-var _one_way_button: CheckBox
 var _types: Array[RockType] = []
 var _edited: Node
 var _drawing := false
@@ -34,11 +33,6 @@ func _enter_tree() -> void:
 	_type_picker = OptionButton.new()
 	_type_picker.tooltip_text = "Rock type for new rocks (from %s)" % TYPES_DIR
 	_toolbar.add_child(_type_picker)
-
-	_one_way_button = CheckBox.new()
-	_one_way_button.text = "One-Way"
-	_one_way_button.tooltip_text = "New rocks only collide on their top side;\nthings pass through from below and the sides."
-	_toolbar.add_child(_one_way_button)
 
 	var seed_button := Button.new()
 	seed_button.text = "New Seed"
@@ -166,7 +160,6 @@ func _finish_stroke() -> void:
 	rock.position = center
 	rock.rock_type = _current_type()
 	rock.rock_seed = randi()
-	rock.one_way = _one_way_button.button_pressed
 	rock.outline = pts
 
 	var ur := get_undo_redo()

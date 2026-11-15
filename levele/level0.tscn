@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://blvvisru6lc5y" path="res://wieza.tscn" id="4_u82sa"]
 [ext_resource type="Script" uid="uid://di5choml2pemu" path="res://addons/rock_painter/rock_2d.gd" id="4_yhxyr"]
 [ext_resource type="Resource" path="res://addons/rock_painter/types/mossy_stone.tres" id="6_3xgf8"]
-[ext_resource type="Script" uid="uid://vrimp0st6oy8" path="res://levele/enable.gd" id="6_7v7i5"]
 [ext_resource type="Resource" path="res://addons/rock_painter/types/andesite.tres" id="6_pqxxa"]
 [ext_resource type="FontFile" uid="uid://0b1svyj3ye7y" path="res://brackeys_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="7_c4ccv"]
 [ext_resource type="PackedScene" uid="uid://coqar0wypgnsr" path="res://spike.tscn" id="9_g7br2"]
@@ -14,9 +13,6 @@
 [sub_resource type="LabelSettings" id="LabelSettings_tgtrw"]
 font = ExtResource("3_g7br2")
 font_size = 101
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_60f5w"]
-size = Vector2(159, 155)
 
 [sub_resource type="LabelSettings" id="LabelSettings_04g2k"]
 font = ExtResource("7_c4ccv")
@@ -57,14 +53,6 @@ label_settings = SubResource("LabelSettings_tgtrw")
 
 [node name="Wieza" parent="Common" unique_id=1380887936 instance=ExtResource("4_u82sa")]
 position = Vector2(1380, 33)
-
-[node name="Enable" type="Area2D" parent="." unique_id=1526498187]
-position = Vector2(-66, 27)
-script = ExtResource("6_7v7i5")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enable" unique_id=1798447527]
-position = Vector2(439.5, -31.19)
-shape = SubResource("RectangleShape2D_60f5w")
 
 [node name="Spike" parent="." unique_id=521800832 instance=ExtResource("9_g7br2")]
 position = Vector2(1075, 57)
