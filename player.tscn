@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://c344oprnxsrr5" path="res://sounds/spike.ogg" id="4_hqtel"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ot507"]
-friction = 0.5
+friction = 0.8
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_60f5w"]
 radius = 5.996345
@@ -98,7 +98,7 @@ air_torque = 20000.0
 max_angular_speed = 2.0
 spin_drag = 1.0
 shift_factor = 1.0
-player_weight = 0.8
+player_weight = 1.0
 bounce_base = 300.0
 bounce_speed_factor = 0.2
 bounce_spin_factor = 0.0
