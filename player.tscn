@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cimicfi5jbwo1" path="res://player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://u74sappk2vby" path="res://sprites/jakisBullshit.png" id="2_onrkg"]
 [ext_resource type="FontFile" uid="uid://duig7wikd3vqf" path="res://brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="3_i3pqv"]
+[ext_resource type="AudioStream" uid="uid://c344oprnxsrr5" path="res://sounds/spike.ogg" id="4_hqtel"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ot507"]
 friction = 0.5
@@ -148,3 +149,6 @@ visible = false
 layout_mode = 2
 text = "skill issue"
 label_settings = SubResource("LabelSettings_hqtel")
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="." unique_id=718552267]
+stream = ExtResource("4_hqtel")

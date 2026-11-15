@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Haven Kraków 2026"
-run/main_scene="uid://csnftj07geeft"
+run/main_scene="uid://ba1bq4iwd6trp"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
