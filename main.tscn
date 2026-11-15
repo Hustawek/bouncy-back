@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://b0geaeq6x5lau" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://blvvisru6lc5y" path="res://wieza.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://coqar0wypgnsr" path="res://spike.tscn" id="5_7mycd"]
-[ext_resource type="FontFile" uid="uid://duig7wikd3vqf" path="res://brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="5_lquwl"]
 [ext_resource type="Script" uid="uid://di5choml2pemu" path="res://addons/rock_painter/rock_2d.gd" id="6_4c57u"]
 [ext_resource type="Resource" path="res://addons/rock_painter/types/granite.tres" id="7_4c57u"]
 [ext_resource type="Resource" path="res://addons/rock_painter/types/stone.tres" id="7_efxa6"]
@@ -11,38 +10,12 @@
 [ext_resource type="Resource" path="res://addons/rock_painter/types/sandstone.tres" id="8_efxa6"]
 [ext_resource type="Resource" path="res://addons/rock_painter/types/diorite.tres" id="9_ycdy4"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_1bvp3"]
-font = ExtResource("5_lquwl")
-font_size = 101
-
 [node name="Main" type="Node2D" unique_id=294539823]
 
-[node name="Common" type="Node2D" parent="." unique_id=1157107702]
-
-[node name="Player" parent="Common" unique_id=808825848 instance=ExtResource("1_ig7tw")]
+[node name="Player" parent="." unique_id=808825848 instance=ExtResource("1_ig7tw")]
 position = Vector2(-9, -37)
 rotation = 1.5707964
 collision_layer = 1
-bounce_speed_factor = 0.2
-
-[node name="CanvasLayer" type="CanvasLayer" parent="Common" unique_id=526972211]
-
-[node name="CenterContainer" type="CenterContainer" parent="Common/CanvasLayer" unique_id=2026540266]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1.0
-offset_top = -159.0
-offset_right = -1.0
-offset_bottom = -159.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Skill" type="Label" parent="Common/CanvasLayer/CenterContainer" unique_id=272155047]
-visible = false
-layout_mode = 2
-text = "skill issue"
-label_settings = SubResource("LabelSettings_1bvp3")
 
 [node name="Rocks" type="Node2D" parent="." unique_id=1981812534]
 
