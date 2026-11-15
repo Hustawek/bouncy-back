@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://chb1xyg4athfs" path="res://sprites/sunshineAndRainbows.png" id="1_n0dp5"]
 [ext_resource type="Texture2D" uid="uid://b0sr14r1y1qp5" path="res://sprites/play1.png" id="2_c0jq0"]
 [ext_resource type="Texture2D" uid="uid://fganf758l2hr" path="res://sprites/play2.png" id="5_6yuet"]
+[ext_resource type="Texture2D" uid="uid://dydqtkd04oxor" path="res://sprites/titleScreen.png" id="7_272bh"]
 
 [node name="Menu" type="Control" unique_id=1311799331]
 layout_mode = 3
@@ -20,22 +21,30 @@ script = ExtResource("1_2xkox")
 position = Vector2(-579, 1060)
 texture = ExtResource("1_n0dp5")
 
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1826319080]
+layout_mode = 0
+offset_left = -54.0
+offset_top = 7.0
+offset_right = 1226.0
+offset_bottom = 727.0
+texture = ExtResource("7_272bh")
+
 [node name="Exit" type="TextureButton" parent="." unique_id=503230482]
 layout_mode = 0
-offset_left = 50.0
-offset_top = 427.0
-offset_right = 386.0
-offset_bottom = 532.0
+offset_left = 729.0
+offset_top = 434.0
+offset_right = 1065.0
+offset_bottom = 539.0
 texture_normal = ExtResource("1_c0jq0")
 texture_hover = ExtResource("1_ih5fd")
 stretch_mode = 5
 
 [node name="Play" type="TextureButton" parent="." unique_id=965205168]
 layout_mode = 0
-offset_left = 53.0
-offset_top = 276.0
-offset_right = 389.0
-offset_bottom = 381.0
+offset_left = 732.0
+offset_top = 283.0
+offset_right = 1068.0
+offset_bottom = 388.0
 texture_normal = ExtResource("2_c0jq0")
 texture_hover = ExtResource("5_6yuet")
 stretch_mode = 5
